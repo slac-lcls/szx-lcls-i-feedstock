@@ -1,0 +1,49 @@
+{% set name = "SZx" %}
+{% set version = "v1.1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/szcompressor/{{ name }}
+  git_tag: "b1609dde7702135b647fb92f91833fc84de2492e"
+
+build:
+  skip: True  # [win or osx]
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - cudatoolkit-dev=11.*
+    - gsl
+    - zlib
+    - zstd
+  run:
+    - cudatoolkit=11.*
+    - gsl
+    - zlib
+    - zstd
+
+about:
+  home: https://github.com/szcompressor/szx
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: copyright-and-BSD-license.txt
+  summary: 'An ultra fast error bounded compressor for scientific datasets'
+  description: |
+    SZx - An ultra fast error bounded compressor for scientific datasets
+  doc_url: https://github.com/szcompressor/szx
+  dev_url: https://github.com/szcompressor/szx
+
+extra:
+  recipe-maintainers:
+    - valmar
+    - chrisvam
+
